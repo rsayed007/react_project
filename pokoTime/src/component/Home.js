@@ -1,4 +1,5 @@
 import React from 'react';
+import Rainbow from '../hoc/rainbow'
 
 const Home = () =>{
     return(
