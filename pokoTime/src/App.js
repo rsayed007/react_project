@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './component/Home';
 import About from './component/About';
 import Contact from './component/Contact';
+import Post from './component/Post'
 
 class App extends Component {
   render(){
@@ -11,9 +12,10 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navebar/>
-          <Route exact path='/' component={Home} />
-          <Route path='/about' component={About} />
-          <Route path='/contact' component={Contact} />
+          <Route exact exact path='/' component={Home} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/contact' component={Contact} />
+          <Route exact path='/posts/:post_id' component={Post} />
         </div>
       </BrowserRouter>
     );
