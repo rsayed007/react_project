@@ -1,12 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios'
+// heir order component
 import Rainbow from '../hoc/rainbow'
 
-const Home = () =>{
-    return(
-        <div className="container ">
-            <h4 className="center">This is Home</h4>
-            <p>The logo will center itself on medium and down screens, but if you want the logo to always be centered, add the center class to your . You will have to make sure yourself that links do not overlap if you use this.</p>
-        </div>
-    )
+class Home extends Component {
+    state ={
+        posts: [],
+    }
+    componentDidMount(){
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(res => {
+                // console.log(res)
+                this.setState({
+                    posts: res.data.slice(0,10)
+                })
+            })
+    }
+    render(){
+        const {posts} = this.state;
+        const postList = posts.length ? (
+            posts.map(post => {
+                return(
+                    <div className="post card" key={post.id}>
+                        <div className="card-content">
+                            <span className="card-title" >{post.title}</span><hr/>
+                            <p> {post.body} </p>
+                        </div>
+                    </div>
+                )
+            })
+        ):(
+            <div className="center">No Post yet</div>
+        )
+        return(
+            <div className="container ">
+                {postList}
+            </div>
+        )
+    }
 }
-export default Home;
+export default Rainbow(Home);

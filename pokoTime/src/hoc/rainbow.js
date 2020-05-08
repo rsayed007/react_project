@@ -8,7 +8,7 @@ const Rainbow = (WrappedComponent) =>{
 
 
     return(props) =>{
-        console.log(props)
+        // console.log(props)
 
         return(
             <div className={className}>
