@@ -11,7 +11,8 @@ class Details extends Component{
         global: [],
         countries: [],
         currentDate: '',
-        loading: true
+        loading: true,
+        search: ""
 
     }
     componentDidMount(){
@@ -27,7 +28,13 @@ class Details extends Component{
             })
     }
 
+    // onchange = e =>{
+    //     this.setState({ search:e.target.value });
+    // }
+    
+    
     render(){
+        // console.log(this.state.search)
         // console.log(this.state.global)
         // console.log(this.state.countries)
         // console.log(this.state.currentDate)
@@ -42,7 +49,9 @@ class Details extends Component{
             <div style={{paddingTop:"15px"}}>
                 <h2>Today is {new Date(this.state.currentDate).toDateString()}</h2>
                 <Summery summeryData={this.state.global} currentDate={this.state.currentDate} />
-            
+
+                {/* <input label="search country" onChange={this.onchange} /> */}
+
                 <div style={{paddingTop: "20px"}}>
                     <table className="table table-bordered" >
                         <thead>
@@ -56,9 +65,13 @@ class Details extends Component{
                                 <th>Total Recovered</th>
                             </tr>
                         </thead>
-                        { this.state.countries.map( countryData =>{
+
+                        
+                        { 
+                        
+                        this.state.countries.map( countryData =>{
                             // console.log(countryData.Country);
-                            return  <Countries countries={countryData} key={countryData.Country} />
+                            return  <Countries search={this.state.search} countries={countryData} key={countryData.Country} />
                         })}
                     </table>
                 </div>
