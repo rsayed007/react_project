@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter, Link } from 'react-router-dom'
+import { Route, BrowserRouter, Link, Switch } from 'react-router-dom'
 
 // components
 import Home from './components/Home'
@@ -23,14 +23,27 @@ class App extends Component {
               <Link to='/posts'>posts</Link><br/>
               <hr/>
             </header>
+              <Switch>
+                <Route path="/posts/:id" component={PostsItem} />
+                <Route path="/about" component={About} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/posts"  component={Posts} />
+                <Route path="/"  component={Home} />
+              </Switch>
+
+
+              {/* with out switch  */}
+            {/* 
               <Route path="/" exact component={Home} />
               <Route path="/about" component={About} />
               <Route path="/profile" component={Profile} />
               <Route path="/posts" exact component={Posts} />
-              <Route path="/posts/1" component={PostsItem} />
+              <Route path="/posts/:id" component={PostsItem} /> */}
+
+
           </div>
         </BrowserRouter>
-    );
+    ); 
   }
 }
 
